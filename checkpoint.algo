@@ -1,0 +1,64 @@
+     Program VecteursOrthogonaux;
+
+Function DotProduct(v1, v2: array of Real): Real;
+var
+  ps: Real;
+  i: Integer;
+begin
+// Cette fonction calcule le produit scalaire de deux vecteurs v1 et v2
+  ps := 0;
+  for i := 0 to Length(v1) - 1 do
+  begin
+    // Pour chaque composante des vecteurs, multiplier les composantes correspondantes et les ajouter au produit scalaire
+    ps := ps + v1[i] * v2[i];
+  end;
+  // Retourner le résultat du produit scalaire
+  Result := ps;
+  end;
+
+Procedure VecteursOrthogonaux(n: Integer; vecteurs: array of array of Real);
+var
+  ps: Real;
+  i: Integer;
+begin
+  // Cet algorithme détermine si deux vecteurs de l'IR sont orthogonaux en utilisant le produit scalaire
+  for i := 0 to n - 1 do
+  begin
+    // Calculer le produit scalaire en utilisant la fonction dot_product
+    ps := DotProduct(vecteurs[i * 2], vecteurs[i * 2 + 1]);
+    if ps = 0 then
+    begin
+      // Si le produit scalaire est égal à zéro, alors les vecteurs sont orthogonaux
+      Writeln('Les vecteurs v', i * 2 + 1, ' et v', i * 2 + 2, ' sont orthogonaux.');
+    end
+    else
+    begin
+      // Sinon, les vecteurs ne sont pas orthogonaux
+      Writeln('Les vecteurs v', i * 2 + 1, ' et v', i * 2 + 2, ' ne sont pas orthogonaux.');
+    end;
+  end;
+end;
+
+var
+  n, i: Integer;
+  vecteurs: array of array of Real;
+
+begin
+  // Exemple d'utilisation
+  n := 3; // Nombre de couples de vecteurs
+  SetLength(vecteurs, n * 2);
+
+  // Définir les vecteurs (exemple)
+  vecteurs[0] := [1.0, 2.0, 3.0];
+  vecteurs[1] := [4.0, 5.0, 6.0];
+  vecteurs[2] := [0.0, 0.0, 1.0];
+  vecteurs[3] := [0.0, 1.0, 0.0];
+  vecteurs[4] := [2.0, -1.0];
+  vecteurs[5] := [-1.0, -2.0];
+
+  // Appeler l'algorithme pour déterminer si les vecteurs sont orthogonaux
+  VecteursOrthogonaux(n, vecteurs);
+end.
+
+                                 
+                              
